@@ -125,7 +125,7 @@ def navigate_to_services():
         print(ServiceType + " " + ServiceDate)
         browser.get("http://sem.myirate.com/Jobs/NewConst_Edit_Service.aspx?id=409&j=" + str(DASH_ID))
         #TODO: Now we need to scrape the page and find the right box to interact with.
-
+        
         i += 1
 
 
