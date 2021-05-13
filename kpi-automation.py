@@ -61,6 +61,19 @@ def login_into_dash(json_target_file):
     browser.find_element_by_name("ctl00$ContentPlaceHolder1$Password").send_keys(password)
     browser.find_element_by_name("ctl00$ContentPlaceHolder1$btnLogin").click()
 
+def logout_session():
+    """
+    We have to run this function to log out of each session that is started in DASH. If Selenium opens up the browser and one of the processes that you're working on fails. PLEASE DO NOT FORGET TO LOG OUT OR WE'LL GET AN EMAIL FROM JENNIFER SNARR ABOUT HOW WE ARE BASICALLY DDOSSING THEM, WHICH IS BAD NEWS BEARS.
+    """
+
+    browser.get("http://sem.myirate.com/Dashboard_Company.aspx")
+    browser.find_element_by_xpath('//*[@id="navProfile"]').click()
+    try:
+        WebDriverWait(browser, 5).until(EC.element_to_be_clickable((By.LINK_TEXT,"Log Out"))).click()
+    except:
+        WebDriverWait(browser, 5).until(EC.element_to_be_clickable((By.LINK_TEXT,"Log Out"))).click()
+    print("We have logged out.")
+
 def navigate_to_BES_Dashboard_Jobs():
     browser.get("http://sem.myirate.com/Reports/AdHoc_View.aspx?id=1314")
     yesterday_start_point = datetime.strftime(datetime.now() - timedelta(1), '%m/%d/%y 12:00 AM')
@@ -135,4 +148,5 @@ def main():
     navigate_to_BES_Dashboard_Jobs()
     read_table()
     navigate_to_services()
+    # logout_session()
 main()
