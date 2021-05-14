@@ -1,4 +1,4 @@
-# KPA Automation Project
+# KPI Automation Project
 
 ## Problem
 
