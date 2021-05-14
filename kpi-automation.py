@@ -11,6 +11,7 @@ import re
 import pandas as pd
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
+from time import sleep
 
 # Importing the packages that are required feel free to use pip or pip3 to install the modules selenium, pandas, and bs4.
 
@@ -135,10 +136,13 @@ def navigate_to_services():
         print(f"Current Rating ID Being QA'ed is: " + str(DASH_ID))
         ServiceType = str(services_cluster.iloc[i,1])
         ServiceDate = str(services_cluster.iloc[i,2])
-        print(ServiceType + " " + ServiceDate)
+        # print(ServiceType + " " + ServiceDate)
+        hook = str(ServiceType + " " + ServiceDate)
+        print(hook)
         browser.get("http://sem.myirate.com/Jobs/NewConst_Edit_Service.aspx?id=409&j=" + str(DASH_ID))
-        #TODO: Now we need to scrape the page and find the right box to interact with.
+        #Now we need to scrape the page and find the right box to interact with.
         
+        browser.find_element_by_xpath("//span[text()='"+str(hook)+"']").click()
         i += 1
 
 
