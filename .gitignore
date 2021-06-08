@@ -1,3 +1,6 @@
 .vscode/
 .pytest_cache/
 *.json
+*.csv
+*.ini
+*.log
