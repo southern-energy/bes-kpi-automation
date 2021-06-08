@@ -232,7 +232,7 @@ def csv_to_database(json_target_file):
     print (path+"\\")
     path = path.replace('\\', '/')
 
-    cursor.execute('truncate TABLE `all_files`;')
+    # cursor.execute('truncate TABLE `all_files`;')
     
     cursor.execute('LOAD DATA LOCAL INFILE \"'+ path +'\" REPLACE INTO TABLE `all_files` FIELDS TERMINATED BY \',\' ignore 1 lines;')
     
