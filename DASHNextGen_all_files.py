@@ -30,23 +30,23 @@ import os
 """
 This was the original method I was using when developing this script, please run this if you are curious of what is happening under the hood of Selenium or you need to troubleshoot any issues.
 """
-print("Real Browser Launching")
-browser = webdriver.Chrome(ChromeDriverManager().install())
-print("Real Browser has Launched")
+# print("Real Browser Launching")
+# browser = webdriver.Chrome(ChromeDriverManager().install())
+# print("Real Browser has Launched")
 
 """
 The Headless browsing option greatly reduces the amount of time it takes for the scraper to run.
 """
-# print("Headless Browser Running")
-# options = Options()
-# options.add_argument("--headless") # Runs Chrome in headless mode.
-# options.add_argument('--no-sandbox') # Bypass OS security model
-# options.add_argument('--disable-gpu')  # applicable to windows os only
-# options.add_argument('start-maximized') # 
-# options.add_argument('disable-infobars')
-# options.add_argument("--disable-extensions")
-# browser = webdriver.Chrome(options=options, executable_path=ChromeDriverManager().install())
-# print("Headless Browser has Launched")
+print("Headless Browser Running")
+options = Options()
+options.add_argument("--headless") # Runs Chrome in headless mode.
+options.add_argument('--no-sandbox') # Bypass OS security model
+options.add_argument('--disable-gpu')  # applicable to windows os only
+options.add_argument('start-maximized') # 
+options.add_argument('disable-infobars')
+options.add_argument("--disable-extensions")
+browser = webdriver.Chrome(options=options, executable_path=ChromeDriverManager().install())
+print("Headless Browser has Launched")
 
 def login_into_dash(json_target_file):
     """
@@ -76,7 +76,7 @@ def login_into_dash(json_target_file):
 def navigate_to_BES_Dashboard_Jobs():
     browser.get("http://sem.myirate.com/Reports/AdHoc_View.aspx?id=1314")
     yesterday_start_point = datetime.strftime(datetime.now() - timedelta(1), '%m/%d/%y 12:00 AM')
-    yesterday_end_point = datetime.strftime(datetime.now() - timedelta(1), '%m/%d/%y 11:00 PM')
+    yesterday_end_point = datetime.strftime(datetime.now() - timedelta(7), '%m/%d/%y 11:00 PM')
     print(f"Start date is: " + yesterday_start_point)
     print(f"End date is: " + yesterday_end_point)
     browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[1]/table/tbody/tr/td[1]/span/input[1]").send_keys(yesterday_start_point)
