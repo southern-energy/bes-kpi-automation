@@ -75,7 +75,7 @@ def login_into_dash(json_target_file):
 
 def navigate_to_BES_Dashboard_Jobs():
     browser.get("http://sem.myirate.com/Reports/AdHoc_View.aspx?id=1314")
-    yesterday_start_point = datetime.strftime(datetime.now() - timedelta(1), '%m/%d/%y 12:00 AM')
+    yesterday_start_point = datetime.strftime(datetime.now() - timedelta(-1), '%m/%d/%y 12:00 AM')
     yesterday_end_point = datetime.strftime(datetime.now() - timedelta(7), '%m/%d/%y 11:00 PM')
     print(f"Start date is: " + yesterday_start_point)
     print(f"End date is: " + yesterday_end_point)
@@ -130,6 +130,11 @@ def read_table_BES_Dashboard_Jobs():
         DASH_ID_List = services_cluster['DASH ID'].to_list()
         print(DASH_ID_List)
 
+def read_DASH_Service_Report_Export_file():
+    service_file = pd.read_csv("DASH_Service_Report_Export.csv")
+    DASH_ID_List_2 = service_file["JobID"].drop_duplicates()
+    global DASH_ID_List_3
+    DASH_ID_List_3 = DASH_ID_List_2.tolist()
 
 def read_table(url, DASH_List):
     browser.get(url)
@@ -140,8 +145,8 @@ def read_table(url, DASH_List):
     already_has_certificate_uploaded = []
 
 
-    for index, DASH_ID in enumerate(DASH_ID_List):
-        print(f"We are on DASH ID " + str(DASH_ID) + " number " + str(int(index)+1) + " of " + str(len(DASH_ID_List)))
+    for index, DASH_ID in enumerate(DASH_List):
+        print(f"We are on DASH ID " + str(DASH_ID) + " number " + str(int(index)+1) + " of " + str(len(DASH_List)))
         try:
             WebDriverWait(browser,5).until(EC.element_to_be_clickable((By.ID,"ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl04")))
         finally:
@@ -254,9 +259,10 @@ def main():
     """
     print("DASHNextGen_File_Queue_Reader.py is Starting")
     login_into_dash("./DASHLoginInfo.json")
-    navigate_to_BES_Dashboard_Jobs()
-    read_table_BES_Dashboard_Jobs()
-    read_table("http://sem.myirate.com/Reports/AdHoc_View.aspx?id=1351", DASH_ID_List)
+    # navigate_to_BES_Dashboard_Jobs()
+    # read_table_BES_Dashboard_Jobs()
+    read_DASH_Service_Report_Export_file()
+    read_table("http://sem.myirate.com/Reports/AdHoc_View.aspx?id=1351", DASH_ID_List_3)
     csv_to_database("./DASHLoginInfo.json")
     logout_session()
     print("DASHNextGen_File_Queue_Reader.py is Done")
