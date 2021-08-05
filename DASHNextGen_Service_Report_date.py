@@ -57,7 +57,7 @@ print(executable)
 browser = webdriver.Firefox(capabilities=cap,executable_path=executable,firefox_profile=profile, options=options)
 print("Headless Browser Running")
 
-# browser = webdriver.Firefox(capabilities=cap,executable_path=GeckoDriverManager().install(),firefox_profile=profile, options=options)
+browser = webdriver.Firefox(capabilities=cap,executable_path=GeckoDriverManager().install(),firefox_profile=profile, options=options)
 
 
 def login_into_dash(json_target_file):
@@ -100,22 +100,20 @@ def navigate_to_reports_and_click_excel(url):
     # Here we have to edit the dates that contain the job.
 
 
-    filter_date_start =  date.today() + timedelta(days=1)
+    filter_date_start =  date.today() + timedelta(days=-5)
     print(filter_date_start)
     datetime.date
-    filter_date_end =  date.today() + timedelta(days=-1)
+    filter_date_end =  date.today() + timedelta(days=0)
     print(filter_date_end)
 
     try:
         WebDriverWait(browser,5).until(EC.element_to_be_clickable((By.ID,"ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl04_dateInput")))
     finally:
-        browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl05_dateInput").click()
-        browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl04_dateInput").send_keys(Keys.CONTROL, "a")
-        browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl04_dateInput").send_keys(Keys.BACKSPACE)
+        browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl04_dateInput").click()
+        browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl04_dateInput").send_keys(Keys.CONTROL, "a",Keys.BACKSPACE)
         browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl04_dateInput").send_keys(str(filter_date_end))
         browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl05_dateInput").click()
-        browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl05_dateInput").send_keys(Keys.CONTROL, "a")
-        browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl05_dateInput").send_keys(Keys.BACKSPACE)
+        browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl05_dateInput").send_keys(Keys.CONTROL, "a",Keys.BACKSPACE)
         browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl05_dateInput").send_keys(str(filter_date_start))
         try:
             browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ApplyButton").click()
