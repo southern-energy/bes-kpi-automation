@@ -72,16 +72,22 @@ def login_into_dash(json_target_file):
     browser.find_element_by_name("ctl00$ContentPlaceHolder1$Password").send_keys(password)
     browser.find_element_by_name("ctl00$ContentPlaceHolder1$btnLogin").click()
 
-
+# This code block is deactivated.
 def navigate_to_BES_Dashboard_Jobs():
     browser.get("http://sem.myirate.com/Reports/AdHoc_View.aspx?id=1314")
     yesterday_start_point = datetime.strftime(datetime.now() - timedelta(-1), '%m/%d/%y 12:00 AM')
     yesterday_end_point = datetime.strftime(datetime.now() - timedelta(7), '%m/%d/%y 11:00 PM')
     print(f"Start date is: " + yesterday_start_point)
     print(f"End date is: " + yesterday_end_point)
-    browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[1]/table/tbody/tr/td[1]/span/input[1]").send_keys(yesterday_start_point)
-    browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[2]/table/tbody/tr/td[1]/span/input[1]").send_keys(yesterday_end_point)
+    browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[1]/table/tbody/tr/td[1]/span/input[1]").send_keys(Keys.CONTROL, "a", Keys.BACKSPACE)
+    browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[1]/table/tbody/tr/td[1]/span/input[1]").send_keys(str(yesterday_start_point))
+    browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[2]/table/tbody/tr/td[1]/span/input[1]").send_keys(Keys.CONTROL, "a", Keys.BACKSPACE)
+    browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[2]/table/tbody/tr/td[1]/span/input[1]").send_keys(str(yesterday_end_point))
+    browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/div[2]/a/input").click()
+    # This code block used to not work, because it did not actually insert and apply the date range, which it can now.
+    # TLDR: This code block can work.
 
+# This code code block is deactivated.
 def read_table_BES_Dashboard_Jobs():
     global dataframe
     dataframe = pd.DataFrame()
