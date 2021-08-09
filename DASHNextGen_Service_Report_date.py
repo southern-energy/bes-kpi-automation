@@ -100,23 +100,21 @@ def navigate_to_reports_and_click_excel(url):
     # Here we have to edit the dates that contain the job.
 
 
-    filter_date_start =  date.today() + timedelta(days=-5)
+    filter_date_start =  datetime.strftime(datetime.now() - timedelta(7), '%m/%d/%y 12:00 AM')
     print(filter_date_start)
     datetime.date
-    filter_date_end =  date.today() + timedelta(days=0)
+    filter_date_end =  datetime.strftime(datetime.now() - timedelta(0), '%m/%d/%y 11:00 PM')
     print(filter_date_end)
 
     try:
         WebDriverWait(browser,5).until(EC.element_to_be_clickable((By.ID,"ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl04_dateInput")))
     finally:
-        browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl04_dateInput").click()
-        browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl04_dateInput").send_keys(Keys.CONTROL, "a",Keys.BACKSPACE)
-        browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl04_dateInput").send_keys(str(filter_date_end))
-        browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl05_dateInput").click()
-        browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl05_dateInput").send_keys(Keys.CONTROL, "a",Keys.BACKSPACE)
-        browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl05_dateInput").send_keys(str(filter_date_start))
+        browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[1]/table/tbody/tr/td[1]/span/input[1]").send_keys(Keys.CONTROL, "a", Keys.BACKSPACE)
+        browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[1]/table/tbody/tr/td[1]/span/input[1]").send_keys(str(filter_date_start))
+        browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[2]/table/tbody/tr/td[1]/span/input[1]").send_keys(Keys.CONTROL, "a", Keys.BACKSPACE)
+        browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[2]/table/tbody/tr/td[1]/span/input[1]").send_keys(str(filter_date_end))
         try:
-            browser.find_element_by_id("ctl00_ContentPlaceHolder1_rfReport_ApplyButton").click()
+            browser.find_elements_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/div[2]/a/input").click()
             print("We did not have to wait to click the apply button")
         except:
             WebDriverWait(browser,5).until(EC.element_to_be_clickable((By.ID,"ctl00_ContentPlaceHolder1_rfReport_ApplyButton"))).click()
