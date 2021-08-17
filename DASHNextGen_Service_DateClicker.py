@@ -74,7 +74,7 @@ def login_into_dash(json_target_file):
 
 # This code block is deactivated.
 def navigate_to_BES_Service_Export_v2():
-    googlebrowser.get("http://sem.myirate.com/Reports/AdHoc_View.aspx?id=1325")
+    googlebrowser.get("http://sem.myirate.com/Reports/AdHoc_View.aspx?id=1352")
     yesterday_start_point = datetime.strftime(datetime.now() - timedelta(4), '%m/%d/%y 12:00 AM')
     yesterday_end_point = datetime.strftime(datetime.now() - timedelta(0), '%m/%d/%y 11:00 PM')
     print(f"Start date is: " + yesterday_start_point)
