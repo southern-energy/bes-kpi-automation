@@ -150,7 +150,7 @@ def grab_downloaded_report():
     # df['LastUpdated'].astype('datetime64[ns]')
     # df['DateEntered'].astype('datetime64[ns]')
     df['ServiceDate'] = pd.to_datetime(df['ServiceDate'], utc=False)
-    df['RescheduleDate'] = pd.to_datetime(df['RescheduledDate'], utc=False)
+    df['RescheduledDate'] = pd.to_datetime(df['RescheduledDate'], utc=False)
     df['DateEntered'] = pd.to_datetime(df['DateEntered'], utc=False)
     df['LastUpdated'] = pd.to_datetime(df['LastUpdated'], utc=False)
 
