@@ -103,7 +103,7 @@ def navigate_to_reports_and_click_excel(url):
     filter_date_start =  datetime.strftime(datetime.now() - timedelta(7), '%m/%d/%y 12:00 AM')
     print(filter_date_start)
     datetime.date
-    filter_date_end =  datetime.strftime(datetime.now() - timedelta(0), '%m/%d/%y 11:00 PM')
+    filter_date_end =  datetime.strftime(datetime.now() - timedelta(1), '%m/%d/%y 11:00 PM')
     print(filter_date_end)
 
     try:
@@ -139,7 +139,7 @@ def grab_downloaded_report():
         df = pd.read_html("report.xls", header=0)[0]
     # print(df)
 
-    df = df[['ServiceID','JobID','ServiceName','ServiceDate','Employee1', 'PONumber', 'Price','TestingComplete','DataEntryComplete','Reschedule','Reinspection','RescheduledDate','DateEntered','EnteredBy', 'LastUpdated','LastUpdatedBy','Checkbox3Value','Employee1Time5','Employee1Time6','Employee1Time7','RequiredTime']]
+    df = df[['ServiceID','JobID','ServiceName','ServiceDate','Employee1', 'PONumber', 'Price','TestingComplete','DataEntryComplete','Reschedule','Reinspection','RescheduledDate','DateEntered','EnteredBy', 'LastUpdated','LastUpdatedBy','Checkbox3Value','Employee1Time5','Employee1Time6','Employee1Time7','RequiredTime','ProjectName']]
 
     df.rename(columns={"JobID":"RatingID", "Employee1": "Employee", 'Employee1Time5':"EmployeeTime5",'Employee1Time6':"EmployeeTime6",'Employee1Time7':"EmployeeTime7", "Checkbox3Value":"readyToPrint"})
     
