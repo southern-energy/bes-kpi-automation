@@ -104,7 +104,7 @@ def read_table(url, DASH_List):
                 dataframe = dataframe.append(pd.read_html(table_we_want),ignore_index=True)
         
 
-    dataframe = dataframe[[0,12,3,5,6,7,2,8,9,10,4,11,14,15,19,16,17,18,13]]
+    dataframe = dataframe[[0,12,3,5,6,7,2,8,9,10,4,11,14,15,19,16,17,18,13,1]]
 
     #TODO: Label these columns.
 
