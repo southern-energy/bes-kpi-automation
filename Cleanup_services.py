@@ -103,7 +103,7 @@ def navigate_to_reports_and_click_excel(url):
     filter_date_start =  date.today() + timedelta(days=-3)
     print(filter_date_start)
     datetime.date
-    filter_date_end =  date.today() + timedelta(days=0)
+    filter_date_end =  date.today() + timedelta(days=4)
     print(filter_date_end)
 
     try:
