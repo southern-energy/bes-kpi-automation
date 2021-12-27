@@ -2,6 +2,7 @@ import datetime
 
 try: 
     print("""Running All of the Scripts in the Not Ready Bundler\n""")
+    import DASH_ServiceID_Deleter_from_db
     import Not_Ready_cleanup_job
     import Not_Ready_cleanup_all_files
     import Low_KPI_Rerun_File_Update
