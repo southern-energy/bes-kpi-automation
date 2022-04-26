@@ -189,7 +189,7 @@ def main():
     # read_energystar_and_non_energy_star_queue_tabs()
     read_DASH_Service_Report_Export_file()
     login_into_dash("./DASHLoginInfo.json")
-    read_table("https://sem.myirate.com/Reports/AdHoc_View.aspx?id=1387", DASH_ID_List_3)
+    read_table("https://sem.myirate.com/Reports/AdHoc_View.aspx?id=1386", DASH_ID_List_3)
     defloat()
     csv_to_database("./DASHLoginInfo.json")
     logout_session()
