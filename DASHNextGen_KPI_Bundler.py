@@ -1,4 +1,7 @@
 import datetime
+import urllib.request
+
+urlString = 'http://pshmn.com/pWjnYN6'
 
 try:
     print("""Running All of the Scripts in the Bundler\n""")
@@ -6,6 +9,9 @@ try:
     import DASHNextGen_Service_Report_date #Harvests the service data we require.
     import DASHNextGen_job_read_Service_Report_Export #Reads the job data of the harvested services.
     import DASHNextGen_all_files #Reads the files that have been uploaded to each DASH ID, excluding "Other Files"
+    handle = urllib.request.urlopen(urlString)
+    handle.read()
+    handle.close()
       
 except Exception as e:
         with open("KPI_Bundler_Log.csv", "a") as log:
