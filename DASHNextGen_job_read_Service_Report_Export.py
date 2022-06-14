@@ -104,7 +104,7 @@ def read_table(url, DASH_List):
                 dataframe = dataframe.append(pd.read_html(table_we_want),ignore_index=True)
         
 
-    dataframe = dataframe[[0,12,3,5,6,7,2,8,9,10,4,11,14,15,19,16,17,18,13,1]]
+    dataframe = dataframe[[0,12,3,5,6,7,2,8,9,10,4,11,16,17,21,18,19,20,13,1,15,14]]
 
     #TODO: Label these columns.
 
@@ -112,9 +112,9 @@ def read_table(url, DASH_List):
 
     # ["RatingID","JobNumber","Address","City","State","Zip","Builder","Subdivision","GasUtility","ElectricUtility","Lot","Division","HERSIndex","BldgFile","DateEntered"]
 
-    dataframe[18] = dataframe[18].str[-8:]
+    dataframe[20] = dataframe[20].str[-8:]
     dataframe[4] = pd.to_numeric(dataframe[4], downcast='integer',errors='ignore')
-    dataframe[19] = pd.to_datetime(dataframe[19], utc=False)
+    dataframe[21] = pd.to_datetime(dataframe[21], utc=False)
 
     # dataframe.to_csv("Export_After_Reorganization.csv", encoding="utf-8", index=False)
 
@@ -138,12 +138,12 @@ def defloat():
         for row in reader:
             if row[10].endswith(".0") == True: # This statement converts the floats in the csv to regular values.
                 row[10] = row[10][:-2]
-                writer.writerow([row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row[16],row[17],row[18],row[19]])
+                writer.writerow([row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row[16],row[17],row[18],row[19],row[20],row[21]])
             elif row[10] == "":
                 row[10] = ''
-                writer.writerow([row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row[16],row[17],row[18],row[19]])
+                writer.writerow([row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row[16],row[17],row[18],row[19],row[20],row[21]])
             else:
-                writer.writerow([row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row[16],row[17],row[18],row[19]])
+                writer.writerow([row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row[16],row[17],row[18],row[19],row[20],row[21]])
                 continue
 
 def csv_to_database(json_target_file):
@@ -189,7 +189,7 @@ def main():
     # read_energystar_and_non_energy_star_queue_tabs()
     read_DASH_Service_Report_Export_file()
     login_into_dash("./DASHLoginInfo.json")
-    read_table("http://sem.myirate.com/Reports/AdHoc_View.aspx?id=1322", DASH_ID_List_3)
+    read_table("https://sem.myirate.com/Reports/AdHoc_View.aspx?id=1386", DASH_ID_List_3)
     defloat()
     csv_to_database("./DASHLoginInfo.json")
     logout_session()
