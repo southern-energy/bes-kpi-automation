@@ -100,24 +100,24 @@ def navigate_to_reports_and_click_excel(url):
     # Here we have to edit the dates that contain the job.
 
 
-    filter_date_start =  datetime.strftime(datetime.now() - timedelta(7), '%m/%d/%y 12:00 AM')
+    filter_date_start =  datetime.strftime(datetime.now() - timedelta(1), '%m/%d/%y 12:00 AM')
     print(filter_date_start)
     datetime.date
-    filter_date_end =  datetime.strftime(datetime.now() - timedelta(1), '%m/%d/%y 11:00 PM')
+    filter_date_end =  datetime.strftime(datetime.now() + timedelta(1), '%m/%d/%y 11:00 PM')
     print(filter_date_end)
 
     try:
-        WebDriverWait(browser,5).until(EC.element_to_be_clickable((By.ID,"ctl00_ContentPlaceHolder1_rfReport_ctl01_ctl08_ctl04_dateInput")))
+        WebDriverWait(browser,5).until(EC.element_to_be_clickable((By.ID,"ctl00_ContentPlaceHolder1_rfReport_ApplyButton")))
     finally:
-        browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[1]/table/tbody/tr/td[1]/span/input[1]").send_keys(Keys.CONTROL, "a", Keys.BACKSPACE)
-        browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[1]/table/tbody/tr/td[1]/span/input[1]").send_keys(str(filter_date_start))
-        browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[2]/table/tbody/tr/td[1]/span/input[1]").send_keys(Keys.CONTROL, "a", Keys.BACKSPACE)
-        browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[2]/table/tbody/tr/td[1]/span/input[1]").send_keys(str(filter_date_end))
+        # browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[1]/table/tbody/tr/td[1]/span/input[1]").send_keys(Keys.CONTROL, "a", Keys.BACKSPACE)
+        # browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[1]/table/tbody/tr/td[1]/span/input[1]").send_keys(str(filter_date_start))
+        # browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[2]/table/tbody/tr/td[1]/span/input[1]").send_keys(Keys.CONTROL, "a", Keys.BACKSPACE)
+        # browser.find_element_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/ul/li/ul/li/div/div[2]/div[2]/table/tbody/tr/td[1]/span/input[1]").send_keys(str(filter_date_end))
         try:
-            browser.find_elements_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/div[2]/a/input").click()
+            browser.find_elements_by_xpath("/html/body/form/div[4]/div[3]/div[6]/div[4]/div[2]/a/input")
             print("We did not have to wait to click the apply button")
         except:
-            WebDriverWait(browser,5).until(EC.element_to_be_clickable((By.ID,"ctl00_ContentPlaceHolder1_rfReport_ApplyButton"))).click()
+            WebDriverWait(browser,5).until(EC.element_to_be_clickable((By.ID,"ctl00_ContentPlaceHolder1_rfReport_ApplyButton")))
             print("We had to wait to click the apply button.")
         try:
             WebDriverWait(browser,1).until(EC.visibility_of_element_located((By.ID,'ctl00_ContentPlaceHolder1_rgReport_ctl00__0')))
@@ -222,7 +222,7 @@ def main():
     """
     print("DASHNextGen_Service_Report_date_BIG.py is Starting")
     login_into_dash("./DASHLoginInfo.json")
-    navigate_to_reports_and_click_excel("http://sem.myirate.com/Reports/AdHoc_View.aspx?id=1352")
+    navigate_to_reports_and_click_excel("http://sem.myirate.com/Reports/AdHoc_View.aspx?id=1383")
     time.sleep(5)
     grab_downloaded_report()
     csv_to_database("./DASHLoginInfo.json")
