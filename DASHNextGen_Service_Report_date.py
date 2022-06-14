@@ -8,9 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
 import time
-from datetime import datetime
 from datetime import timedelta, date, datetime
-from datetime import timedelta, date
 import os
 import pandas as pd
 import MySQLdb

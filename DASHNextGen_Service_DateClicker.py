@@ -77,6 +77,8 @@ def navigate_to_BES_Service_Export_v2():
     googlebrowser.get("http://sem.myirate.com/Reports/AdHoc_View.aspx?id=1383")
     yesterday_start_point = datetime.strftime(datetime.now() - timedelta(4), '%m/%d/%y 12:00 AM')
     yesterday_end_point = datetime.strftime(datetime.now() + timedelta(4), '%m/%d/%y 11:00 PM')
+    # yesterday_start_point = date.today() - timedelta(days=4)
+    # yesterday_end_point = date.today() + timedelta(days=1)
     print(f"Start date is: " + yesterday_start_point)
     print(f"End date is: " + yesterday_end_point)
     time.sleep(1)
