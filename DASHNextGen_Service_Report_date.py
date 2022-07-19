@@ -214,7 +214,7 @@ def logout_session():
     except:
         WebDriverWait(browser, 5).until(EC.element_to_be_clickable((By.LINK_TEXT,"Log Out"))).click()
 
-def main():
+def ServiceReportGrabber():
     """
     Please use these to control the previously defined functions.
     """
@@ -229,7 +229,7 @@ def main():
     logout_session()
 
 
-main()
+ServiceReportGrabber()
 
 browser.quit()
 

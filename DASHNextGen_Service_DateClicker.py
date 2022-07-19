@@ -99,8 +99,8 @@ def logout_session():
     except:
         WebDriverWait(googlebrowser, 5).until(EC.element_to_be_clickable((By.LINK_TEXT,"Log Out"))).click()
 
-def main():
+def ServiceDateClicker():
 	login_into_dash("./DASHLoginInfo.json")
 	navigate_to_BES_Service_Export_v2()
 	logout_session()
-main()
+ServiceDateClicker()
