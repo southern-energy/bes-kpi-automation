@@ -98,11 +98,11 @@ def navigate_to_reports_and_click_excel(url):
     # Here we have to edit the dates that contain the job.
 
 
-    filter_date_start =  datetime.strftime(datetime.now() - timedelta(1), '%m/%d/%y 12:00 AM')
-    print(filter_date_start)
-    datetime.date
-    filter_date_end =  datetime.strftime(datetime.now() + timedelta(1), '%m/%d/%y 11:00 PM')
-    print(filter_date_end)
+    # filter_date_start =  datetime.strftime(datetime.now() - timedelta(1), '%m/%d/%y 12:00 AM')
+    # print(filter_date_start)
+    # datetime.date
+    # filter_date_end =  datetime.strftime(datetime.now() + timedelta(1), '%m/%d/%y 11:00 PM')
+    # print(filter_date_end)
 
     try:
         WebDriverWait(browser,5).until(EC.element_to_be_clickable((By.ID,"ctl00_ContentPlaceHolder1_rfReport_ApplyButton")))
@@ -224,7 +224,7 @@ def ServiceReportGrabber():
     time.sleep(5)
     grab_downloaded_report()
     csv_to_database("./DASHLoginInfo.json")
-    file_cleanup()
+    # file_cleanup()
     print("We have uploaded to the database.")
     logout_session()
 
