@@ -1,7 +1,8 @@
 import datetime
 import urllib.request
+import logging
 
-urlString = 'http://pshmn.com/pWjnYN6'
+urlString = 'http://pshmn.com/p2JnYuS'
 
 try:
     print("""Running All of the Scripts in the Bundler\n""")
@@ -14,6 +15,7 @@ try:
     handle.close()
       
 except Exception as e:
-        with open("KPI_Bundler_Log.csv", "a") as log:
-                 log.write('KPI_Bundler,'+str(e) +','+ str(datetime.datetime.now()) +'\n')
+        with open("LOG_KPI_Bundler.csv", "a") as log:
+                 log.write('LOG_KPI_Bundler,'+str(e) +','+ str(datetime.datetime.now()) +'\n')
+                 log.write(logging.Formatter('[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(funcName)s %(levelname)s - %(message)s','%m-%d %H:%M:%S')+'\n')
         print('Error: ' + str(e))
