@@ -1,5 +1,6 @@
 import datetime
 import urllib.request
+import logging
 
 urlString = 'http://pshmn.com/pWjnYN6'
 
@@ -14,6 +15,7 @@ try:
     handle.close()
 
 except Exception as e:
-        with open("Not_ready_Bundler_Log.csv", "a") as log:
-                 log.write('Not_ready_Bundler_Log.csv,'+ str(e) + ',' + str(datetime.datetime.now()) +'\n')
+        with open("LOG_Not_ready_Bundler.csv", "a") as log:
+                 log.write('LOG_Not_ready_Bundler.csv,'+ str(e) + ',' + str(datetime.datetime.now()) +'\n')
+                 log.write(logging.Formatter('[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(funcName)s %(levelname)s - %(message)s','%m-%d %H:%M:%S')+'\n')
         print('Error: ' + str(e))
