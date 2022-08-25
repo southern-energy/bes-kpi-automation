@@ -2,7 +2,7 @@ import datetime
 import urllib.request
 import logging
 
-urlString = 'http://pshmn.com/p2JnYuS'
+urlString = 'http://pshmn.com/p2JnYuS' # Replace string with 'http://pshmn.com/p2JnYuS' if you want Pushmon notifications.
 
 try:
     print("""Running All of the Scripts in the Bundler\n""")
